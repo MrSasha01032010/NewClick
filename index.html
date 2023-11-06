@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Угадай число</title>
+</head>
+<body>
+    <h1>Угадай число от 1 до 100</h1>
+    <p>Я загадал число. Попробуй угадать его!</p>
+
+    <input type="text" id="guess" placeholder="Введи число">
+    <button onclick="checkGuess()">Проверить</button>
+
+    <p id="message"></p>
+
+    <script>
+        // Генерация случайного числа от 1 до 100
+        const secretNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById("guess").value);
+            attempts++;
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                document.getElementById("message").textContent = "Пожалуйста, введите корректное число от 1 до 100.";
+            } else if (guess < secretNumber) {
+                document.getElementById("message").textContent = "Загаданное число больше.";
+            } else if (guess > secretNumber) {
+                document.getElementById("message").textContent = "Загаданное число меньше.";
+            } else {
+                document.getElementById("message").textContent = `Поздравляю! Ты угадал число ${secretNumber} за ${attempts} попыток.`;
+            }
+        }
+    </script>
+</body>
+</html>
